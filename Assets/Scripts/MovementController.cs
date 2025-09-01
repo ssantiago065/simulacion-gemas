@@ -9,19 +9,12 @@ public class MovementController : MonoBehaviour
 
     void Start()
     {
-        // Si el targetRenderer no está asignado, buscarlo automáticamente
         if (targetRenderer == null)
         {
-            GameObject plane = GameObject.Find("Plane"); // Cambia "NombreDelPlano" por el nombre exacto del plano en la jerarquía
-            if (plane != null)
-            {
-                targetRenderer = plane.GetComponent<MeshRenderer>();
-            }
-
+            targetRenderer = RendererHelper.GetTargetRenderer();
             if (targetRenderer == null)
             {
-                Debug.LogError("No se pudo encontrar el MeshRenderer del plano. Asegúrate de que el nombre del plano sea correcto y que tenga un MeshRenderer.");
-                return;
+                Debug.LogError("No se pudo asignar el targetRenderer en MovementController.");
             }
         }
 

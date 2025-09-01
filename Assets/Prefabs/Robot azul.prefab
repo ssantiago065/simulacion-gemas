@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 2314352573246458283}
   - component: {fileID: 4980582710667071696}
   - component: {fileID: 5575084512295443291}
-  - component: {fileID: 6166696968568928554}
+  - component: {fileID: -1750968952450254280}
   m_Layer: 0
   m_Name: Robot azul
   m_TagString: RobotAzul
@@ -749,7 +749,7 @@ MonoBehaviour:
   carryPoint: {fileID: 5278536050882029136}
   baseTarget: {fileID: 0}
   mover: {fileID: 2314352573246458283}
---- !u!114 &6166696968568928554
+--- !u!114 &-1750968952450254280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -758,12 +758,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3158949490304067302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e12d4e2a817a07348a137ddad07aeb0, type: 3}
+  m_Script: {fileID: 11500000, guid: f759939c4a1f83d418849ec57be451ba, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovementController
-  targetRenderer: {fileID: 0}
-  columns: 8
-  rows: 8
+  m_EditorClassIdentifier: Assembly-CSharp::RobotAI
 --- !u!1 &4115334442326525250
 GameObject:
   m_ObjectHideFlags: 0
