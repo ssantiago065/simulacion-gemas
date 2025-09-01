@@ -36,7 +36,7 @@ public class Grab : MonoBehaviour
             //Ir a la base
     }
 
-    void PickUp(GameObject gem)
+    public void PickUp(GameObject gem)
     {
         carrying = gem;
 

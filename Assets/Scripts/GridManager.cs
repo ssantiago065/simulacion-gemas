@@ -17,6 +17,17 @@ public static class GridManager
         return new Vector2Int(x, z);
     }
 
+    public static Vector3 GridToWorldPosition(Vector2Int gridPosition, Bounds bounds, int columns, int rows)
+    {
+        float cellWidth = bounds.size.x / columns;
+        float cellHeight = bounds.size.z / rows;
+        
+        float x = bounds.min.x + gridPosition.x * cellWidth + cellWidth / 2f;
+        float z = bounds.min.z + gridPosition.y * cellHeight + cellHeight / 2f;
+        float y = bounds.max.y; // Mantener la altura original  
+        return new Vector3(x, y, z);
+    }
+
     // Establece un objeto en una posición específica de la cuadrícula
     public static void SetObjectAt(Vector2Int gridPosition, GameObject obj)
     {

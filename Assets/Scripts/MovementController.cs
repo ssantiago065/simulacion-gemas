@@ -9,15 +9,6 @@ public class MovementController : MonoBehaviour
 
     void Start()
     {
-        if (targetRenderer == null)
-        {
-            targetRenderer = RendererHelper.GetTargetRenderer();
-            if (targetRenderer == null)
-            {
-                Debug.LogError("No se pudo asignar el targetRenderer en MovementController.");
-            }
-        }
-
         // Obtener la posición inicial del robot en la matriz
         currentGridPosition = GridManager.WorldToGridPosition(transform.position, targetRenderer.bounds, columns, rows);
         GridManager.SetObjectAt(currentGridPosition, gameObject);

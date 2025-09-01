@@ -26,6 +26,7 @@ public class Spawner : MonoBehaviour
 
     void Awake()
     {
+        Blackboard.Init(columns, rows);
         // Fallback por si olvidamos asignarlo en el Inspector.
         if (targetRenderer == null)
         {
@@ -40,6 +41,7 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
+        
         gridCenters = BuildGridCenters();
         SpawnAll();
     }

@@ -2014,7 +2014,7 @@ GameObject:
   - component: {fileID: 1949864926}
   - component: {fileID: 1949864925}
   m_Layer: 0
-  m_Name: Piso madera Principal
+  m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

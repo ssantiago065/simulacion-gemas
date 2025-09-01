@@ -12,18 +12,11 @@ public class Movement : MonoBehaviour
 
     Vector3 targetPos;
     bool moving;
-    Rigidbody rb;
+    Rigidbody rb;           
 
     void Awake()
     {
-        if (!targetRenderer)
-        {
-            targetRenderer = RendererHelper.GetTargetRenderer();
-            if (targetRenderer == null)
-            {
-                Debug.LogError("No se pudo asignar el targetRenderer en Movement.");
-            }
-        }
+        rb = GetComponent<Rigidbody>();
     }
 
     void Start()
