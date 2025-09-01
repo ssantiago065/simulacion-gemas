@@ -6,11 +6,6 @@ public class RobotAI : MonoBehaviour
 {
     public Movement mover;
 
-    void Awake()
-    {
-        mover = GetComponent<Movement>();
-    }
-
     public void TakeTurn()
     {
         if (mover == null || mover.targetRenderer == null)

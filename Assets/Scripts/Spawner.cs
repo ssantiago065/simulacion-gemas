@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[DefaultExecutionOrder(-100)]
 public class Spawner : MonoBehaviour
 {
     public Renderer targetRenderer;
@@ -18,6 +19,23 @@ public class Spawner : MonoBehaviour
     public Transform baseAzul;
     public Transform baseRoja;
     public Transform baseVerde;
+
+    // 👉 Lista de robots creados por este spawner
+    private readonly List<RobotAI> spawnedRobots = new List<RobotAI>();
+    public IReadOnlyList<RobotAI> GetRobots() => spawnedRobots;
+
+    void Awake()
+    {
+        // Fallback por si olvidamos asignarlo en el Inspector.
+        if (targetRenderer == null)
+        {
+            var plane = GameObject.Find("Plane"); // cambia el nombre si tu tablero no se llama "Plane"
+            if (plane) targetRenderer = plane.GetComponent<Renderer>();
+            if (targetRenderer == null)
+                Debug.LogError("[Spawner] targetRenderer sigue null. Asigna el MeshRenderer del tablero en el Inspector.");
+        }
+    }
+
     private List<Vector3> gridCenters;
 
     void Start()
@@ -28,7 +46,6 @@ public class Spawner : MonoBehaviour
 
     private List<Vector3> BuildGridCenters()
     {
-
         Bounds b = targetRenderer.bounds;
         float width = b.size.x;
         float height = b.size.z;
@@ -44,12 +61,8 @@ public class Spawner : MonoBehaviour
 
         var list = new List<Vector3>(columns * rows);
         for (int x = 0; x < columns; x++)
-        {
             for (int z = 0; z < rows; z++)
-            {
                 list.Add(start + new Vector3(x * cellX, 0f, z * cellZ));
-            }
-        }
         return list;
     }
 
@@ -67,34 +80,48 @@ public class Spawner : MonoBehaviour
 
         void RegisterInGrid(GameObject obj, Vector3 position)
         {
-            Vector2Int gridPosition = GridManager.WorldToGridPosition(position, targetRenderer.bounds, columns, rows);
+            Vector2Int gridPosition =
+                GridManager.WorldToGridPosition(position, targetRenderer.bounds, columns, rows);
             GridManager.SetObjectAt(gridPosition, obj);
         }
 
+        // AZUL
         var goA = Instantiate(robotAzul, TakeCell(), Quaternion.identity, transform);
         RegisterInGrid(goA, goA.transform.position);
         var colA = goA.GetComponent<Grab>();
         var movA = goA.GetComponent<Movement>();
+        var aiA  = goA.GetComponent<RobotAI>();
         colA.baseTarget = baseAzul;
         colA.mover = movA;
-        movA.targetRenderer = targetRenderer;
+        movA.targetRenderer = targetRenderer; // inyección del renderer del tablero
+        aiA.mover = movA;                     // inyección del Movement a la IA
+        spawnedRobots.Add(aiA);
 
+        // ROJO
         var goR = Instantiate(robotRojo, TakeCell(), Quaternion.identity, transform);
         RegisterInGrid(goR, goR.transform.position);
         var colR = goR.GetComponent<Grab>();
         var movR = goR.GetComponent<Movement>();
+        var aiR  = goR.GetComponent<RobotAI>();
         colR.baseTarget = baseRoja;
         colR.mover = movR;
         movR.targetRenderer = targetRenderer;
+        aiR.mover = movR;
+        spawnedRobots.Add(aiR);
 
+        // VERDE
         var goV = Instantiate(robotVerde, TakeCell(), Quaternion.identity, transform);
         RegisterInGrid(goV, goV.transform.position);
         var colV = goV.GetComponent<Grab>();
         var movV = goV.GetComponent<Movement>();
+        var aiV  = goV.GetComponent<RobotAI>();
         colV.baseTarget = baseVerde;
         colV.mover = movV;
         movV.targetRenderer = targetRenderer;
+        aiV.mover = movV;
+        spawnedRobots.Add(aiV);
 
+        // Gemas
         for (int i = 0; i < 2; i++)
         {
             if (gemaAzul)

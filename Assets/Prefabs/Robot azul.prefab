@@ -761,6 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f759939c4a1f83d418849ec57be451ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotAI
+  mover: {fileID: 2314352573246458283}
 --- !u!1 &4115334442326525250
 GameObject:
   m_ObjectHideFlags: 0
