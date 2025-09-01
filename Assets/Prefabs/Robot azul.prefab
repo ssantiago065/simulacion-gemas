@@ -859,6 +859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotAI
   mover: {fileID: 2314352573246458283}
+  grab: {fileID: 0}
 --- !u!1 &4115334442326525250
 GameObject:
   m_ObjectHideFlags: 0
