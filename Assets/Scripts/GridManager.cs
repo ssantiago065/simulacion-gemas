@@ -1,0 +1,73 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+public static class GridManager
+{
+    public static GameObject[,] grid = new GameObject[8, 8];
+
+    // Convierte una posición en el mundo a una posición en la cuadrícula
+    public static Vector2Int WorldToGridPosition(Vector3 worldPosition, Bounds bounds, int columns, int rows)
+    {
+        float cellWidth = bounds.size.x / columns;
+        float cellHeight = bounds.size.z / rows;
+
+        int x = Mathf.FloorToInt((worldPosition.x - bounds.min.x) / cellWidth);
+        int z = Mathf.FloorToInt((worldPosition.z - bounds.min.z) / cellHeight);
+
+        return new Vector2Int(x, z);
+    }
+
+    // Establece un objeto en una posición específica de la cuadrícula
+    public static void SetObjectAt(Vector2Int gridPosition, GameObject obj)
+    {
+        if (gridPosition.x >= 0 && gridPosition.x < 8 && gridPosition.y >= 0 && gridPosition.y < 8)
+        {
+            grid[gridPosition.x, gridPosition.y] = obj;
+        }
+    }
+
+    // Obtiene un objeto en una posición específica de la cuadrícula
+    public static GameObject GetObjectAt(Vector2Int gridPosition)
+    {
+        if (gridPosition.x >= 0 && gridPosition.x < 8 && gridPosition.y >= 0 && gridPosition.y < 8)
+        {
+            return grid[gridPosition.x, gridPosition.y];
+        }
+        return null;
+    }
+
+    // Limpia un objeto en una posición específica de la cuadrícula
+    public static void ClearObjectAt(Vector2Int gridPosition)
+    {
+        if (gridPosition.x >= 0 && gridPosition.x < 8 && gridPosition.y >= 0 && gridPosition.y < 8)
+        {
+            grid[gridPosition.x, gridPosition.y] = null;
+        }
+    }
+
+    // Obtiene todas las posiciones de un tipo específico de objeto
+    public static List<Vector2Int> GetPositionsByTag(string tag)
+    {
+        List<Vector2Int> positions = new List<Vector2Int>();
+
+        for (int x = 0; x < 8; x++)
+        {
+            for (int y = 0; y < 8; y++)
+            {
+                GameObject obj = grid[x, y];
+                if (obj != null && obj.CompareTag(tag))
+                {
+                    positions.Add(new Vector2Int(x, y));
+                }
+            }
+        }
+
+        return positions;
+    }
+
+    // Devuelve toda la matriz
+    public static GameObject[,] GetGrid()
+    {
+        return grid;
+    }
+}
