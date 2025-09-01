@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Movement))]
 public class RobotAI : MonoBehaviour
 {
-    private Movement mover;
+    public Movement mover;
 
     void Awake()
     {

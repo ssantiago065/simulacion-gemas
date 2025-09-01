@@ -6,8 +6,10 @@ public static class RendererHelper
 
     public static Renderer GetTargetRenderer()
     {
+        Debug.LogWarning("RendererHelper: Obteniendo targetRenderer...");
         if (cachedRenderer == null)
         {
+            Debug.LogWarning("CachedRenderer es null, buscando 'Plane'...");
             GameObject plane = GameObject.Find("Plane");
             if (plane != null)
             {
