@@ -67,8 +67,8 @@ public class Spawner : MonoBehaviour
 
         void RegisterInGrid(GameObject obj, Vector3 position)
         {
-            Vector2Int gridPosition = gridManager.WorldToGridPosition(position, targetRenderer.bounds, columns, rows);
-            gridManager.SetObjectAt(gridPosition, obj);
+            Vector2Int gridPosition = GridManager.WorldToGridPosition(position, targetRenderer.bounds, columns, rows);
+            GridManager.SetObjectAt(gridPosition, obj);
         }
 
         var goA = Instantiate(robotAzul, TakeCell(), Quaternion.identity, transform);

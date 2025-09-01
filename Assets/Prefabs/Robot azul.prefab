@@ -647,9 +647,10 @@ GameObject:
   - component: {fileID: 2314352573246458283}
   - component: {fileID: 4980582710667071696}
   - component: {fileID: 5575084512295443291}
+  - component: {fileID: 6166696968568928554}
   m_Layer: 0
   m_Name: Robot azul
-  m_TagString: Untagged
+  m_TagString: RobotAzul
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -748,6 +749,21 @@ MonoBehaviour:
   carryPoint: {fileID: 5278536050882029136}
   baseTarget: {fileID: 0}
   mover: {fileID: 2314352573246458283}
+--- !u!114 &6166696968568928554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158949490304067302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e12d4e2a817a07348a137ddad07aeb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovementController
+  targetRenderer: {fileID: 0}
+  columns: 8
+  rows: 8
 --- !u!1 &4115334442326525250
 GameObject:
   m_ObjectHideFlags: 0
