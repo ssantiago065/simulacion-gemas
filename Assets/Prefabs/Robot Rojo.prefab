@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503a7c5189b77e14a8c9820223d2c70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grab
-  myGemTag: GemaAzul
+  myGemTag: GemaRoja
   detector: {fileID: 2467981846941356447}
   carryPoint: {fileID: 5278536050882029136}
   baseTarget: {fileID: 0}
