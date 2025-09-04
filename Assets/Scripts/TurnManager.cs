@@ -13,6 +13,11 @@ public class TurnManager : MonoBehaviour
         StartCoroutine(Bootstrap());
     }
 
+    void Update()
+    {
+        SimulationStats.elapsedTime += Time.deltaTime;
+    }
+
     System.Collections.IEnumerator Bootstrap()
     {
         // Espera un frame a que el Spawner instancie e inyecte referencias

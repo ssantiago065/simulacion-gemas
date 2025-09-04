@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Renderer targetRenderer; 
+    public Renderer targetRenderer;
     public int columns = 8;
     public int rows = 8;
 
-    public float moveSpeed = 3f; 
-    public float turnSpeed = 540f;      
+    private Vector2Int currentCell;
+
+    public float moveSpeed = 6f;
+    public float turnSpeed = 540f;
     public float stopDistance = 0.02f;
 
     Vector3 targetPos;
     bool moving;
-    Rigidbody rb;           
+    Rigidbody rb;
 
     void Awake()
     {
@@ -22,6 +24,8 @@ public class Movement : MonoBehaviour
     void Start()
     {
         targetPos = transform.position;
+        currentCell = GridManager.WorldToGridPosition(transform.position, targetRenderer.bounds, columns, rows);
+        GridManager.SetObjectAt(currentCell, gameObject);
     }
 
     void Update()
@@ -56,6 +60,15 @@ public class Movement : MonoBehaviour
 
     public void MoveToCell(int col, int row)
     {
+        // 🔹 limpiar celda actual
+        GridManager.ClearObjectAt(currentCell);
+
+        // 🔹 mover en el mundo
+        Vector3 newPos = GridManager.GridToWorldPosition(new Vector2Int(col, row), targetRenderer.bounds, columns, rows);
+        transform.position = newPos;
+        
+        // Movimiento suave
+        /*
         Bounds b = targetRenderer.bounds;
         float w = b.size.x, h = b.size.z;
         float cellX = w / columns, cellZ = h / rows;
@@ -65,8 +78,19 @@ public class Movement : MonoBehaviour
             transform.position.y,       
             b.min.z + cellZ * 0.5f
         );
-
         targetPos = start + new Vector3(col * cellX, 0f, row * cellZ);
         moving = true;
+        */
+
+
+
+        // 🔹 actualizar celda
+        currentCell = new Vector2Int(col, row);
+        GridManager.SetObjectAt(currentCell, gameObject);
+    }
+
+    public Vector2Int GetCurrentCell()
+    {
+        return currentCell;
     }
 }

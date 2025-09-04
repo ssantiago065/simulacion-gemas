@@ -93,7 +93,7 @@ public class Spawner : MonoBehaviour
         var colA = goA.GetComponent<Grab>();
         var movA = goA.GetComponent<Movement>();
         var aiA  = goA.GetComponent<RobotAI>();
-        colA.baseTarget = baseAzul;
+        colA.baseTarget = baseVerde;
         colA.mover = movA;
         movA.targetRenderer = targetRenderer; // inyección del renderer del tablero
         aiA.mover = movA;                     // inyección del Movement a la IA
@@ -117,11 +117,15 @@ public class Spawner : MonoBehaviour
         var colV = goV.GetComponent<Grab>();
         var movV = goV.GetComponent<Movement>();
         var aiV  = goV.GetComponent<RobotAI>();
-        colV.baseTarget = baseVerde;
+        colV.baseTarget = baseAzul;
         colV.mover = movV;
         movV.targetRenderer = targetRenderer;
         aiV.mover = movV;
         spawnedRobots.Add(aiV);
+
+        if (baseAzul != null) baseAzul.GetComponent<BaseZone>().acceptsGemTag = "GemaAzul";
+        if (baseRoja != null) baseRoja.GetComponent<BaseZone>().acceptsGemTag = "GemaRoja";
+        if (baseVerde != null) baseVerde.GetComponent<BaseZone>().acceptsGemTag = "GemaVerde";
 
         // Gemas
         for (int i = 0; i < 2; i++)

@@ -21,7 +21,7 @@ public static class GridManager
     {
         float cellWidth = bounds.size.x / columns;
         float cellHeight = bounds.size.z / rows;
-        
+
         float x = bounds.min.x + gridPosition.x * cellWidth + cellWidth / 2f;
         float z = bounds.min.z + gridPosition.y * cellHeight + cellHeight / 2f;
         float y = bounds.max.y; // Mantener la altura original  
@@ -74,6 +74,54 @@ public static class GridManager
         }
 
         return positions;
+    }
+
+    public static void RenderGrid()
+    {
+        string gridRepresentation = "";
+
+        for (int y = 7; y >= 0; y--) // Iterar desde la fila superior hacia abajo
+        {
+            for (int x = 0; x < 8; x++)
+            {
+                GameObject obj = grid[x, y];
+                if (obj == null)
+                {
+                    gridRepresentation += ". "; // Celda vacía
+                }
+                else if (obj.CompareTag("RobotAzul"))
+                {
+                    gridRepresentation += "A "; // Robot azul
+                }
+                else if (obj.CompareTag("RobotRojo"))
+                {
+                    gridRepresentation += "R "; // Robot rojo
+                }
+                else if (obj.CompareTag("RobotVerde"))
+                {
+                    gridRepresentation += "V "; // Robot verde
+                }
+                else if (obj.CompareTag("GemaAzul"))
+                {
+                    gridRepresentation += "GA "; // Gema azul
+                }
+                else if (obj.CompareTag("GemaRoja"))
+                {
+                    gridRepresentation += "GR "; // Gema roja
+                }
+                else if (obj.CompareTag("GemaVerde"))
+                {
+                    gridRepresentation += "GV "; // Gema verde
+                }
+                else
+                {
+                    gridRepresentation += "? "; // Objeto desconocido
+                }
+            }
+            gridRepresentation += "\n"; // Nueva línea al final de cada fila
+        }
+
+        Debug.Log(gridRepresentation);
     }
 
     // Devuelve toda la matriz

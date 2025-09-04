@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8379da30ff52c4890e9b07a767c7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseZone
-  acceptsGemTag: GemaAzul
+  acceptsGemTag: GemaVerde
   dropPoint: {fileID: 26676777}
 --- !u!1 &1422284651
 GameObject:
@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8379da30ff52c4890e9b07a767c7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseZone
-  acceptsGemTag: GemaAzul
+  acceptsGemTag: GemaRoja
   dropPoint: {fileID: 952477525}
 --- !u!64 &1422284655
 MeshCollider:

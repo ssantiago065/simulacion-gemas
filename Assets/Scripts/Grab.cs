@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour
 {
-    public string myGemTag = "GemaAzul";
+    public string myGemTag;
 
     public Transform detector;           
     public Transform carryPoint;         
@@ -61,6 +61,7 @@ public class Grab : MonoBehaviour
 
         gem.transform.SetParent(null);
         gem.transform.position = worldPos;
+        SimulationStats.RegisterDelivery();
 
         if (gem.TryGetComponent<Rigidbody>(out var rb)) rb.isKinematic = false;
         if (gem.TryGetComponent<Collider>(out var col)) col.enabled = true;

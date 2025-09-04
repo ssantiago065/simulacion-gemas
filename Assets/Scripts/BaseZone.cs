@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BaseZone : MonoBehaviour
 {
-    public string acceptsGemTag = "GemBlue";
+    public string acceptsGemTag;
 
     public Transform dropPoint;
 
